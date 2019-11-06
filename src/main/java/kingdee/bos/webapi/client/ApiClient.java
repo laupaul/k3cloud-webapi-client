@@ -37,6 +37,8 @@ public class ApiClient {
 		ApiHttpClient<String> httpClient = new ApiHttpClient<String>();
 		request.setListener(httpClient);
 		String ret = httpClient.Send(request, String.class);
+		if(ret==null)
+			return false;
 		int result = new JSONObject(ret).getInt("LoginResultType");
 		if (result == 1) {
 			this._cookieStore = request.getCookieStore();
